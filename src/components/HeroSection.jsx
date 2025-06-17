@@ -14,7 +14,7 @@ export const HeroSection = () => {
                             <span className="text-gradient opacity-0 animate-fade-in-delay-2"> Zulfa </span>
                         </h1>
                         <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-                            bio deskripsi (masih belom dibuat)
+                            Penultimate Computer Engineering at Universitas Indonesia expertise in <span className="text-primary">Backend Development</span>, <span className="text-primary">Database Management</span>, and <span className="text-primary">Cybersecurity</span>. 
                         </p>
 
                         <div className="pt-4 opacity-0 animate-fade-in-delay-4">
