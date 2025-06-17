@@ -28,7 +28,7 @@ const projects = [
     ],
     tags: ["React", "TailwindCSS", "Vite", "PostgreSQL"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/verszz/Nurture",
     longDescription: "Nurture provides mental health resources specifically designed for high school students. The platform offers self-assessment tools, guided meditation sessions, stress management techniques, and connects students with licensed counselors through secure video sessions. All content is vetted by mental health professionals."
   },
   {
