@@ -138,9 +138,9 @@ export const SkillsSection = () => {
                                         <span className="text-sm font-medium text-primary">{skill.level}%</span>
                                     </div>
                                     
-                                    <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
+                                    <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
                                         <motion.div 
-                                            className="bg-primary h-2 rounded-full"
+                                            className="bg-primary bg-background-black h-2 rounded-full"
                                             initial={{ width: 0 }}
                                             animate={{ width: skill.level + "%" }}
                                             transition={{ duration: 1, ease: "easeOut" }}

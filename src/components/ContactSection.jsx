@@ -77,10 +77,10 @@ export const ContactSection = () => {
             title: "Email",
             content: (
                 <a 
-                    href="mailto:zulfa.zza1003@gmail.com" 
+                    href="https://mail.google.com/mail/u/0/?fs=1&to=zikrizulfa.z2@gmail.com&tf=cm" 
                     className="text-muted-foreground hover:text-primary transition-colors hover:underline"
                 >
-                    zulfa.zza1003@gmail.com
+                    zikrizulfa.z2@gmail.com
                 </a>
             )
         },
@@ -92,7 +92,7 @@ export const ContactSection = () => {
                     href="tel:+628954621345" 
                     className="text-muted-foreground hover:text-primary transition-colors hover:underline"
                 >
-                    +62 8954621345
+                    +62 89667730784
                 </a>
             )
         },

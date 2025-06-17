@@ -43,7 +43,7 @@ export const AboutSection = () => {
                                 Get In Touch
                             </motion.a>
                             <motion.a 
-                                href="/path/to/cv.pdf" 
+                                href="CV-Zikri Zulfa Azhim.pdf" 
                                 download 
                                 className="px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center gap-2"
                                 whileHover={{ scale: 1.05 }}

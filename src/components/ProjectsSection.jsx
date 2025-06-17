@@ -1,30 +1,16 @@
 import { useState } from "react";
-import { ArrowRight, ExternalLink, Github, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "Human Resource Information System",
-    description: "Functional Human Resource Information System (HRIS) for work.",
-    image: "/projects/project1.png",
-    images: [
-      "/projects/project1.png",
-      "/projects/project1-1.png",
-      "/projects/project1-2.png"
-    ],
-    tags: ["React", "MongoDB", "TailwindCSS", "Vite"],
-    demoUrl: "#",
-    githubUrl: "#",
-    longDescription: "A comprehensive HRIS solution that streamlines employee management, payroll processing, and performance tracking. The system includes modules for recruitment, onboarding, time tracking, and benefits administration. Built with a modern tech stack for scalability and performance."
-  },
-  {
-    id: 2,
     title: "Nurture",
     description: "Mental Health Based Website to encourage mental awareness amongst high students.",
-    image: "/projects/project2.png",
+    image: "/projects/nurture1.png",
     images: [
-      "/projects/project2.png",
-      "/projects/project2-1.png"
+      "/projects/nurture1.png",
+      "/projects/nurture2.png",
+      "/projects/nurture3.png"
     ],
     tags: ["React", "TailwindCSS", "Vite", "PostgreSQL"],
     demoUrl: "#",
@@ -32,31 +18,70 @@ const projects = [
     longDescription: "Nurture provides mental health resources specifically designed for high school students. The platform offers self-assessment tools, guided meditation sessions, stress management techniques, and connects students with licensed counselors through secure video sessions. All content is vetted by mental health professionals."
   },
   {
+    id: 2,
+    title: "Let's Do It",
+    description: "To-Do List App with role-based access, enabling supervisors to track team tasks.",
+    image: "/projects/letsdoit1.png",
+    images: [
+      "/projects/letsdoit2.png",
+      "/projects/letsdoit1.png",
+      "/projects/letsdoit3.png"
+    ],
+    tags: ["React", "MongoDB", "TailwindCSS", "Vite"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/verszz/Lets-Do-It/tree/main",
+    longDescription: "A comprehensive To-Do list application designed for teams and organizations. Features include role-based access control (supervisor and employee roles), task assignment, progress tracking, and real-time updates. Supervisors can create tasks, assign them to employees, monitor progress across the team, and receive updates. Employees can manage their assigned tasks, update statuses, and collaborate effectively."
+  },
+  {
     id: 3,
     title: "Recipe Manager",
     description: "Simple yet minimalistic recipe manager to store your all cooking recipe.",
-    image: "/projects/project3.png",
+    image: "/projects/recipe1.png",
     images: [
-      "/projects/project3.png",
-      "/projects/project3-1.png",
-      "/projects/project3-2.png"
+      "/projects/recipe1.png",
+      "/projects/recipe2.png",
+      "/projects/recipe3.png"
     ],
-    tags: ["React", "TailwindCSS", "Vite"],
+    tags: ["React", "TailwindCSS", "Vite", "PostgreSQL"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/verszz/Tutam9-RecipeManager",
     longDescription: "A clean, intuitive recipe management application that helps home cooks organize their favorite recipes. Features include ingredient scaling, meal planning, grocery list generation, and dietary filtering. The app supports rich text formatting for recipes and includes a built-in timer for cooking steps."
   },
 ];
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const openProjectModal = (project) => {
     setSelectedProject(project);
+    setCurrentImageIndex(0); // Reset image index when opening a new project
   };
   
   const closeProjectModal = () => {
     setSelectedProject(null);
+    setFullscreenImage(null); // Close fullscreen when closing modal
+  };
+  
+  const openFullscreenImage = (img, index) => {
+    setFullscreenImage(img);
+    setCurrentImageIndex(index);
+  };
+  
+  const closeFullscreenImage = () => {
+    setFullscreenImage(null);
+  };
+  
+  const navigateImage = (direction) => {
+    if (!selectedProject) return;
+    
+    const newIndex = direction === 'next' 
+      ? (currentImageIndex + 1) % selectedProject.images.length 
+      : (currentImageIndex - 1 + selectedProject.images.length) % selectedProject.images.length;
+    
+    setCurrentImageIndex(newIndex);
+    setFullscreenImage(selectedProject.images[newIndex]);
   };
   
   return (
@@ -101,9 +126,9 @@ export const ProjectsSection = () => {
                 </p>
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
-                    <a href={project.demoUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300" target="_blank" onClick={e => e.stopPropagation()}>
+                    {/* <a href={project.demoUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300" target="_blank" onClick={e => e.stopPropagation()}>
                       <ExternalLink size={20}/>
-                    </a>
+                    </a> */}
                     <a href={project.githubUrl} className="text-foreground/80 hover:text-primary transition-colors duration-300" target="_blank" onClick={e => e.stopPropagation()}>
                       <Github size={20}/>
                     </a>
@@ -128,9 +153,9 @@ export const ProjectsSection = () => {
         </div>
       </div>
       
-      {/* Project Modal */}
+      {/* Project Detail Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 flex justify-between items-center border-b border-border">
               <h3 className="text-2xl font-bold">{selectedProject.title}</h3>
@@ -150,12 +175,19 @@ export const ProjectsSection = () => {
                 "grid-cols-2 md:grid-cols-3"
               }`}>
                 {selectedProject.images.map((img, index) => (
-                  <div key={index} className="rounded-lg overflow-hidden">
+                  <div 
+                    key={index} 
+                    className="rounded-lg overflow-hidden cursor-pointer relative group"
+                    onClick={() => openFullscreenImage(img, index)}
+                  >
                     <img 
                       src={img} 
                       alt={`${selectedProject.title} ${index + 1}`} 
-                      className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white font-medium">Click to enlarge</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -200,6 +232,50 @@ export const ProjectsSection = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Fullscreen Image Viewer */}
+      {fullscreenImage && selectedProject && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-xl z-[60] flex items-center justify-center p-30" onClick={closeFullscreenImage}>
+          <button 
+            onClick={closeFullscreenImage}
+            className="absolute top-6 right-6 text-white hover:text-primary transition-colors z-10"
+          >
+            <X size={32} />
+          </button>
+          
+          {/* Navigation buttons */}
+          {selectedProject.images.length > 1 && (
+            <>
+              <button 
+                onClick={(e) => {e.stopPropagation(); navigateImage('prev');}}
+                className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors z-10"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button 
+                onClick={(e) => {e.stopPropagation(); navigateImage('next');}}
+                className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors z-10"
+              >
+                <ChevronRight size={32} />
+              </button>
+            </>
+          )}
+          
+          {/* Image counter */}
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full z-10">
+            {currentImageIndex + 1} / {selectedProject.images.length}
+          </div>
+          
+          {/* Main image */}
+          <div className="w-full h-full flex items-center justify-center">
+            <img 
+              src={fullscreenImage} 
+              alt={`${selectedProject.title} fullscreen`} 
+              className="max-w-full max-h-full object-contain"
+            />
           </div>
         </div>
       )}

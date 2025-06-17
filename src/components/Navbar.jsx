@@ -129,7 +129,7 @@ export const Navbar = () => {
                     </button>
                     
                     <a 
-                        href="/path/to/resume.pdf" 
+                        href="CV-Zikri Zulfa Azhim.pdf" 
                         download
                         className="hidden md:flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm"
                     >
@@ -181,7 +181,7 @@ export const Navbar = () => {
                             </button>
                             
                             <a 
-                                href="/path/to/resume.pdf" 
+                                href="CV-Zikri Zulfa Azhim.pdf" 
                                 download
                                 className="flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                             >

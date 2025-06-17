@@ -10,7 +10,6 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
-import { ArrowUp } from "lucide-react";
 import AosWrapper from "@/components/AosWrapper";
 
 export const Home = () => {
@@ -48,13 +47,6 @@ export const Home = () => {
 
         {/* Footer */}
         <Footer />
-
-        <a 
-            href="#hero" 
-            className="fixed bottom-4 right-4 z-50 p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
-        >
-            <ArrowUp />
-        </a>
     </div>
     );
 };
